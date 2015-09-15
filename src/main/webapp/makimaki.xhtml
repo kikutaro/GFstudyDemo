@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>CongratulationsMakiMaki</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:selectOneMenu value="#{makiMakiPhotoBean.effect}">
+                <f:selectItems value="#{makiMakiPhotoBean.listEffect}" var="effect"
+                               itemLabel="#{effect}" itemValue="#{effect}" />
+                <f:ajax event="change" execute="@this" render="@form" />
+            </h:selectOneMenu>
+            <p:separator />
+            <p:commandButton type="button" onclick="PF('switcher').previous()"
+                             icon="ui-icon-circle-triangle-w"/>
+            <p:commandButton type="button" onclick="PF('switcher').next()"
+                             icon="ui-icon-circle-triangle-e"/>
+            <p:imageSwitch effect="#{makiMakiPhotoBean.effect}" widgetVar="switcher">
+                <ui:repeat value="#{makiMakiPhotoBean.listPhotos}" var="image">
+                    <p:graphicImage value="/images/#{image}" />
+                </ui:repeat>
+            </p:imageSwitch>
+        </h:form>
+    </h:body>
+</html>
+
